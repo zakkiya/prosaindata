@@ -19,21 +19,23 @@ scrape_cnbc(6)
 ------------------
 
 ----- stdout -----
-done[1] > Datangi OJ
+done[1] > Buron Piet
 ----- stdout -----
-done[2] > Korban Swi
+done[2] > Datangi OJ
 ----- stdout -----
-done[3] > Lengkap! K
+done[3] > Korban Swi
 ----- stdout -----
-done[4] > OCBC Yakin
+done[4] > Lengkap! K
 ----- stdout -----
-done[5] > Wanaartha
+done[5] > OCBC Yakin
 ----- stdout -----
-done[6] > Tipu Nasab
+done[6] > Wanaartha
 ----- stdout -----
-done[7] > Raja Salma
+done[7] > Tipu Nasab
 ----- stdout -----
-done[8] > Pietruschk
+done[8] > Raja Salma
+----- stdout -----
+done[9] > Pietruschk
 ------------------
 
 [0;31m[0m
