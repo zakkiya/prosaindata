@@ -413,6 +413,122 @@ LSA : TF IDF &amp; Singuler Value Decomposition (SVD)</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata/tugas
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">KeyboardInterrupt</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-2-d5df0069828e&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/google/colab/drive.py</span> in <span class="ni">mount</span><span class="nt">(mountpoint, force_remount, timeout_ms, readonly)</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="k">def</span> <span class="nf">mount</span><span class="p">(</span><span class="n">mountpoint</span><span class="p">,</span> <span class="n">force_remount</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">120000</span><span class="p">,</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span><span class="w">   </span><span class="sd">&quot;&quot;&quot;Mount your Google Drive at the specified mountpoint path.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">103</span>   <span class="k">return</span> <span class="n">_mount</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>       <span class="n">mountpoint</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>       <span class="n">force_remount</span><span class="o">=</span><span class="n">force_remount</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/google/colab/drive.py</span> in <span class="ni">_mount</span><span class="nt">(mountpoint, force_remount, timeout_ms, ephemeral, readonly)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>   <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>   <span class="k">if</span> <span class="n">ephemeral</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">132</span>     <span class="n">_message</span><span class="o">.</span><span class="n">blocking_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="s1">&#39;request_auth&#39;</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;authType&#39;</span><span class="p">:</span> <span class="s1">&#39;dfs_ephemeral&#39;</span><span class="p">},</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/google/colab/_message.py</span> in <span class="ni">blocking_request</span><span class="nt">(request_type, request, timeout_sec, parent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>       <span class="n">request_type</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">expect_reply</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>   <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>   <span class="k">return</span> <span class="n">read_reply_from_input</span><span class="p">(</span><span class="n">request_id</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/google/colab/_message.py</span> in <span class="ni">read_reply_from_input</span><span class="nt">(message_id, timeout_sec)</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="n">reply</span> <span class="o">=</span> <span class="n">_read_next_input_message</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="n">_NOT_READY</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">96</span>       <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span>       <span class="k">continue</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>     <span class="k">if</span> <span class="p">(</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> /content/drive/MyDrive
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>prosaindata
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘prosaindata’: File exists
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> prosaindata
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>tugas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘tugas’: File exists
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> tugas
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata/tugas
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">googleapiclient.discovery</span> <span class="kn">import</span> <span class="n">build</span>
 </pre></div>
@@ -590,7 +706,7 @@ LSA : TF IDF &amp; Singuler Value Decomposition (SVD)</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-e639bc0d-3879-4f3c-b95f-5fd90f81835c">
+  <div id="df-dbbf54a0-a871-4ea8-a20b-8c24618e185e">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -788,7 +904,7 @@ LSA : TF IDF &amp; Singuler Value Decomposition (SVD)</p>
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-e639bc0d-3879-4f3c-b95f-5fd90f81835c')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-dbbf54a0-a871-4ea8-a20b-8c24618e185e')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -839,12 +955,12 @@ LSA : TF IDF &amp; Singuler Value Decomposition (SVD)</p>
 
       <script>
         const buttonEl =
-          document.querySelector('#df-e639bc0d-3879-4f3c-b95f-5fd90f81835c button.colab-df-convert');
+          document.querySelector('#df-dbbf54a0-a871-4ea8-a20b-8c24618e185e button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-e639bc0d-3879-4f3c-b95f-5fd90f81835c');
+          const element = document.querySelector('#df-dbbf54a0-a871-4ea8-a20b-8c24618e185e');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -930,7 +1046,7 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-06c386d1-09d2-42fa-b20b-1ebbc284cf56">
+  <div id="df-1fc8408d-477c-443b-a9b6-a8b8c2250472">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1100,7 +1216,7 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-06c386d1-09d2-42fa-b20b-1ebbc284cf56')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-1fc8408d-477c-443b-a9b6-a8b8c2250472')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1151,12 +1267,12 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
 
       <script>
         const buttonEl =
-          document.querySelector('#df-06c386d1-09d2-42fa-b20b-1ebbc284cf56 button.colab-df-convert');
+          document.querySelector('#df-1fc8408d-477c-443b-a9b6-a8b8c2250472 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-06c386d1-09d2-42fa-b20b-1ebbc284cf56');
+          const element = document.querySelector('#df-1fc8408d-477c-443b-a9b6-a8b8c2250472');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1199,7 +1315,7 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-86f55814-b32a-4178-a319-16f0fd8b8372">
+  <div id="df-36a9b728-6958-4409-ab3c-8b34b55ece51">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1306,7 +1422,7 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-86f55814-b32a-4178-a319-16f0fd8b8372')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-36a9b728-6958-4409-ab3c-8b34b55ece51')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1357,12 +1473,12 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
 
       <script>
         const buttonEl =
-          document.querySelector('#df-86f55814-b32a-4178-a319-16f0fd8b8372 button.colab-df-convert');
+          document.querySelector('#df-36a9b728-6958-4409-ab3c-8b34b55ece51 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-86f55814-b32a-4178-a319-16f0fd8b8372');
+          const element = document.querySelector('#df-36a9b728-6958-4409-ab3c-8b34b55ece51');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1398,7 +1514,7 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-317a136a-bb3e-472a-869b-9e0b78f581a2">
+  <div id="df-88102f3b-a15d-428f-b6e6-713ca733da70">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1505,7 +1621,7 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-317a136a-bb3e-472a-869b-9e0b78f581a2')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-88102f3b-a15d-428f-b6e6-713ca733da70')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1556,12 +1672,12 @@ Requirement already satisfied: Sastrawi in /usr/local/lib/python3.10/dist-packag
 
       <script>
         const buttonEl =
-          document.querySelector('#df-317a136a-bb3e-472a-869b-9e0b78f581a2 button.colab-df-convert');
+          document.querySelector('#df-88102f3b-a15d-428f-b6e6-713ca733da70 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-317a136a-bb3e-472a-869b-9e0b78f581a2');
+          const element = document.querySelector('#df-88102f3b-a15d-428f-b6e6-713ca733da70');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1647,7 +1763,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-412d6320-e35c-4213-9da1-b50112a11454">
+  <div id="df-8edbb326-4c61-4e6d-81b4-76f68fcefcec">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1754,7 +1870,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-412d6320-e35c-4213-9da1-b50112a11454')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-8edbb326-4c61-4e6d-81b4-76f68fcefcec')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1805,12 +1921,12 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 
       <script>
         const buttonEl =
-          document.querySelector('#df-412d6320-e35c-4213-9da1-b50112a11454 button.colab-df-convert');
+          document.querySelector('#df-8edbb326-4c61-4e6d-81b4-76f68fcefcec button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-412d6320-e35c-4213-9da1-b50112a11454');
+          const element = document.querySelector('#df-8edbb326-4c61-4e6d-81b4-76f68fcefcec');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1924,51 +2040,25 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;prabowo&#39;, &#39;tersandra&#39;, &#39;koalisi&#39;, &#39;pkb&#39;, &#39;deklarasi&#39;, &#39;otomatis&#39;, &#39;cawapresnya&#39;, &#39;sih&#39;, &#39;imin&#39;, &#39;minat&#39;, &#39;elektabilitas&#39;, &#39;imin&#39;, &#39;koma&#39;, &#39;elektabilitas&#39;, &#39;prabowo&#39;, &#39;ikut&#39;, &#39;nyungsep&#39;, &#39;ambyarrr&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;anda&#39;, &#39;pasang&#39;, &#39;capres&#39;, &#39;semangat&#39;, &#39;pasang&#39;, &#39;anis&#39;, &#39;pasang&#39;, &#39;prabowo&#39;, &#39;pasang&#39;, &#39;gan&#39;, &#39;jar&#39;, &#39;pasang&#39;, &#39;erlangga&#39;, &#39;rakyat&#39;, &#39;senang&#39;, &#39;sungguh&#39;, &#39;pilih&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;golput&#39;, &#39;presidenya&#39;, &#39;tega&#39;, &#39;sila&#39;, &#39;keadilab&#39;, &#39;rakyat&#39;, &#39;indonesia&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;prabowo&#39;, &#39;presiden&#39;, &#39;ganjar&#39;, &#39;tri&#39;, &#39;negeri&#39;, &#39;anies&#39;, &#39;tri&#39;, &#39;negeri&#39;]
+[&#39;anda&#39;, &#39;pasang&#39;, &#39;capres&#39;, &#39;semangat&#39;, &#39;pasang&#39;, &#39;anis&#39;, &#39;pasang&#39;, &#39;prabowo&#39;, &#39;pasang&#39;, &#39;gan&#39;, &#39;jar&#39;, &#39;pasang&#39;, &#39;erlangga&#39;, &#39;rakyat&#39;, &#39;senang&#39;, &#39;sungguh&#39;, &#39;pilih&#39;]
+[&#39;golput&#39;, &#39;presidenya&#39;, &#39;tega&#39;, &#39;sila&#39;, &#39;keadilab&#39;, &#39;rakyat&#39;, &#39;indonesia&#39;]
+[&#39;prabowo&#39;, &#39;presiden&#39;, &#39;ganjar&#39;, &#39;tri&#39;, &#39;negeri&#39;, &#39;anies&#39;, &#39;tri&#39;, &#39;negeri&#39;]
 [&#39;orang&#39;, &#39;semangat&#39;]
 [&#39;ya&#39;, &#39;ayo&#39;, &#39;dukung&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hubung&#39;, &#39;kursi&#39;, &#39;pilpres&#39;]
+[&#39;hubung&#39;, &#39;kursi&#39;, &#39;pilpres&#39;]
 [&#39;kursi&#39;, &#39;ya&#39;, &#39;duduk&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;prabowo&#39;, &#39;subianto&#39;, &#39;djojohadikusumo&#39;]
+[&#39;prabowo&#39;, &#39;subianto&#39;, &#39;djojohadikusumo&#39;]
 []
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;golkar&#39;, &#39;nyalonin&#39;, &#39;presiden&#39;, &#39;takut&#39;, &#39;kalah&#39;, &#39;cari&#39;, &#39;aman&#39;, &#39;partai&#39;, &#39;santai&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;waspada&#39;, &#39;muncul&#39;, &#39;soehartoisme&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;senang&#39;, &#39;cinta&#39;, &#39;mbak&#39;, &#39;puan&#39;, &#39;bangga&#39;, &#39;pakai&#39;, &#39;prabowo&#39;, &#39;presiden&#39;, &#39;bismillah&#39;, &#39;pilih&#39;, &#39;pakai&#39;, &#39;anis&#39;, &#39;allohuakbar&#39;]
+[&#39;golkar&#39;, &#39;nyalonin&#39;, &#39;presiden&#39;, &#39;takut&#39;, &#39;kalah&#39;, &#39;cari&#39;, &#39;aman&#39;, &#39;partai&#39;, &#39;santai&#39;]
+[&#39;waspada&#39;, &#39;muncul&#39;, &#39;soehartoisme&#39;]
+[&#39;senang&#39;, &#39;cinta&#39;, &#39;mbak&#39;, &#39;puan&#39;, &#39;bangga&#39;, &#39;pakai&#39;, &#39;prabowo&#39;, &#39;presiden&#39;, &#39;bismillah&#39;, &#39;pilih&#39;, &#39;pakai&#39;, &#39;anis&#39;, &#39;allohuakbar&#39;]
 [&#39;ayo&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dukung&#39;, &#39;gp&#39;, &#39;afiliasi&#39;, &#39;kaum&#39;, &#39;biadab&#39;, &#39;tengger&#39;, &#39;jargon&#39;, &#39;ubah&#39;, &#39;nyata&#39;, &#39;sih&#39;, &#39;najis&#39;, &#39;arb&#39;, &#39;kes&#39;, &#39;akan&#39;, &#39;baik&#39;, &#39;rubah&#39;, &#39;bangsa&#39;, &#39;b&#39;, &#39;fakta&#39;, &#39;fakta&#39;, &#39;keburu&#39;, &#39;nilai&#39;, &#39;waras&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;sungguh&#39;, &#39;nyata&#39;, &#39;nyata&#39;, &#39;usak&#39;, &#39;idiologi&#39;, &#39;bangsa&#39;, &#39;ganggu&#39;, &#39;program&#39;, &#39;juang&#39;, &#39;nkri&#39;, &#39;b&#39;, &#39;aneh&#39;, &#39;partai&#39;, &#39;politik&#39;, &#39;didik&#39;, &#39;kader&#39;, &#39;usung&#39;, &#39;capres&#39;, &#39;comot&#39;, &#39;logika&#39;, &#39;politik&#39;, &#39;waras&#39;, &#39;rusak&#39;, &#39;tatanan&#39;, &#39;demokrasi&#39;, &#39;b&#39;, &#39;b&#39;, &#39;capres&#39;, &#39;comot&#39;, &#39;partai&#39;, &#39;milik&#39;, &#39;kader&#39;, &#39;mustahil&#39;, &#39;waras&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;nyata&#39;, &#39;sinajis&#39;, &#39;fatamorgana&#39;, &#39;kaum&#39;, &#39;delusi&#39;, &#39;reaksi&#39;, &#39;nyata&#39;, &#39;ulah&#39;, &#39;dungu&#39;, &#39;sadar&#39;, &#39;b&#39;, &#39;nyata&#39;, &#39;kaum&#39;, &#39;sesat&#39;, &#39;logika&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;b&#39;, &#39;imajinasi&#39;, &#39;halusinasi&#39;, &#39;sinajis&#39;, &#39;capres&#39;, &#39;takut&#39;, &#39;b&#39;, &#39;b&#39;, &#39;aneh&#39;, &#39;didholimi&#39;, &#39;fakta&#39;, &#39;kaum&#39;, &#39;delusi&#39;, &#39;penuh&#39;, &#39;sensasi&#39;, &#39;politik&#39;, &#39;b&#39;, &#39;b&#39;, &#39;popularnya&#39;, &#39;sih&#39;, &#39;najis&#39;, &#39;safari&#39;, &#39;politik&#39;, &#39;nyata&#39;, &#39;b&#39;, &#39;b&#39;, &#39;sih&#39;, &#39;najis&#39;, &#39;populer&#39;, &#39;akibat&#39;, &#39;aksi&#39;, &#39;aksi&#39;, &#39;biadab&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;bukti&#39;, &#39;demokrasi&#39;, &#39;hasil&#39;, &#39;koyak&#39;, &#39;koyak&#39;, &#39;b&#39;, &#39;dampak&#39;, &#39;sikampret&#39;, &#39;sikadrun&#39;, &#39;pulih&#39;, &#39;sicebong&#39;, &#39;b&#39;, &#39;tonggak&#39;, &#39;biadab&#39;, &#39;titis&#39;, &#39;pilkada&#39;, &#39;dki&#39;, &#39;ayat&#39;, &#39;mayat&#39;, &#39;pakta&#39;, &#39;politik&#39;, &#39;identitas&#39;, &#39;kuasa&#39;, &#39;b&#39;, &#39;dalil&#39;, &#39;dalih&#39;, &#39;agama&#39;, &#39;jadi&#39;, &#39;alat&#39;, &#39;durjana&#39;, &#39;raih&#39;, &#39;ambisi&#39;, &#39;iblis&#39;, &#39;b&#39;, &#39;balut&#39;, &#39;serapat&#39;, &#39;rapat&#39;, &#39;dandan&#39;, &#39;keagamisan&#39;, &#39;baju&#39;, &#39;tutup&#39;, &#39;badan&#39;, &#39;sosok&#39;, &#39;manusia&#39;, &#39;taat&#39;, &#39;agama&#39;, &#39;buai&#39;, &#39;sinajis&#39;, &#39;nyata&#39;, &#39;manusia&#39;, &#39;manusia&#39;, &#39;mana&#39;, &#39;agama&#39;, &#39;legal&#39;, &#39;alat&#39;, &#39;biadab&#39;, &#39;ambisi&#39;, &#39;pribadi&#39;, &#39;halal&#39;, &#39;durjana&#39;, &#39;dailih&#39;, &#39;apa&#39;, &#39;nama&#39;, &#39;dekat&#39;, &#39;nama&#39;, &#39;iman&#39;, &#39;agama&#39;, &#39;dll&#39;, &#39;nyata&#39;, &#39;tipu&#39;, &#39;muslihat&#39;, &#39;keummatan&#39;, &#39;nyata&#39;, &#39;obyek&#39;, &#39;politik&#39;, &#39;susup&#39;, &#39;kutu&#39;, &#39;kutu&#39;, &#39;busuk&#39;, &#39;tanam&#39;, &#39;faham&#39;, &#39;biadab&#39;, &#39;balut&#39;, &#39;dalil&#39;, &#39;nama&#39;, &#39;tuhan&#39;, &#39;kejumawaan&#39;, &#39;fakta&#39;, &#39;egois&#39;, &#39;kaum&#39;, &#39;jamin&#39;, &#39;surga&#39;, &#39;nyata&#39;, &#39;sakit&#39;, &#39;delusi&#39;, &#39;mustahil&#39;, &#39;sembuh&#39;, &#39;dalih&#39;, &#39;seabreg&#39;, &#39;dalil&#39;, &#39;kaum&#39;, &#39;dosa&#39;, &#39;mudah&#39;, &#39;rendah&#39;, &#39;derajat&#39;, &#39;manusia&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;iwan&#39;, &#39;pahlawan&#39;, &#39;noor&#39;, &#39;mbak&#39;, &#39;ketapang&#39;, &#39;sampit&#39;, &#39;hadir&#39;, &#39;n&#39;, &#39;dukung&#39;, &#39;anies&#39;, &#39;baswedan&#39;, &#39;presiden&#39;, &#39;ri&#39;, &#39;amin&#39;, &#39;ya&#39;, &#39;robbal&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;p&#39;, &#39;nyungsep&#39;, &#39;kursi&#39;, &#39;dpr&#39;, &#39;ri&#39;, &#39;zonk&#39;, &#39;akar&#39;, &#39;rumput&#39;, &#39;pilihanis&#39;]
+[&#39;dukung&#39;, &#39;gp&#39;, &#39;afiliasi&#39;, &#39;kaum&#39;, &#39;biadab&#39;, &#39;tengger&#39;, &#39;jargon&#39;, &#39;ubah&#39;, &#39;nyata&#39;, &#39;sih&#39;, &#39;najis&#39;, &#39;arb&#39;, &#39;kes&#39;, &#39;akan&#39;, &#39;baik&#39;, &#39;rubah&#39;, &#39;bangsa&#39;, &#39;b&#39;, &#39;fakta&#39;, &#39;fakta&#39;, &#39;keburu&#39;, &#39;nilai&#39;, &#39;waras&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;sungguh&#39;, &#39;nyata&#39;, &#39;nyata&#39;, &#39;usak&#39;, &#39;idiologi&#39;, &#39;bangsa&#39;, &#39;ganggu&#39;, &#39;program&#39;, &#39;juang&#39;, &#39;nkri&#39;, &#39;b&#39;, &#39;aneh&#39;, &#39;partai&#39;, &#39;politik&#39;, &#39;didik&#39;, &#39;kader&#39;, &#39;usung&#39;, &#39;capres&#39;, &#39;comot&#39;, &#39;logika&#39;, &#39;politik&#39;, &#39;waras&#39;, &#39;rusak&#39;, &#39;tatanan&#39;, &#39;demokrasi&#39;, &#39;b&#39;, &#39;b&#39;, &#39;capres&#39;, &#39;comot&#39;, &#39;partai&#39;, &#39;milik&#39;, &#39;kader&#39;, &#39;mustahil&#39;, &#39;waras&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;nyata&#39;, &#39;sinajis&#39;, &#39;fatamorgana&#39;, &#39;kaum&#39;, &#39;delusi&#39;, &#39;reaksi&#39;, &#39;nyata&#39;, &#39;ulah&#39;, &#39;dungu&#39;, &#39;sadar&#39;, &#39;b&#39;, &#39;nyata&#39;, &#39;kaum&#39;, &#39;sesat&#39;, &#39;logika&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;b&#39;, &#39;imajinasi&#39;, &#39;halusinasi&#39;, &#39;sinajis&#39;, &#39;capres&#39;, &#39;takut&#39;, &#39;b&#39;, &#39;b&#39;, &#39;aneh&#39;, &#39;didholimi&#39;, &#39;fakta&#39;, &#39;kaum&#39;, &#39;delusi&#39;, &#39;penuh&#39;, &#39;sensasi&#39;, &#39;politik&#39;, &#39;b&#39;, &#39;b&#39;, &#39;popularnya&#39;, &#39;sih&#39;, &#39;najis&#39;, &#39;safari&#39;, &#39;politik&#39;, &#39;nyata&#39;, &#39;b&#39;, &#39;b&#39;, &#39;sih&#39;, &#39;najis&#39;, &#39;populer&#39;, &#39;akibat&#39;, &#39;aksi&#39;, &#39;aksi&#39;, &#39;biadab&#39;, &#39;bangsa&#39;, &#39;negara&#39;, &#39;b&#39;, &#39;bukti&#39;, &#39;demokrasi&#39;, &#39;hasil&#39;, &#39;koyak&#39;, &#39;koyak&#39;, &#39;b&#39;, &#39;dampak&#39;, &#39;sikampret&#39;, &#39;sikadrun&#39;, &#39;pulih&#39;, &#39;sicebong&#39;, &#39;b&#39;, &#39;tonggak&#39;, &#39;biadab&#39;, &#39;titis&#39;, &#39;pilkada&#39;, &#39;dki&#39;, &#39;ayat&#39;, &#39;mayat&#39;, &#39;pakta&#39;, &#39;politik&#39;, &#39;identitas&#39;, &#39;kuasa&#39;, &#39;b&#39;, &#39;dalil&#39;, &#39;dalih&#39;, &#39;agama&#39;, &#39;jadi&#39;, &#39;alat&#39;, &#39;durjana&#39;, &#39;raih&#39;, &#39;ambisi&#39;, &#39;iblis&#39;, &#39;b&#39;, &#39;balut&#39;, &#39;serapat&#39;, &#39;rapat&#39;, &#39;dandan&#39;, &#39;keagamisan&#39;, &#39;baju&#39;, &#39;tutup&#39;, &#39;badan&#39;, &#39;sosok&#39;, &#39;manusia&#39;, &#39;taat&#39;, &#39;agama&#39;, &#39;buai&#39;, &#39;sinajis&#39;, &#39;nyata&#39;, &#39;manusia&#39;, &#39;manusia&#39;, &#39;mana&#39;, &#39;agama&#39;, &#39;legal&#39;, &#39;alat&#39;, &#39;biadab&#39;, &#39;ambisi&#39;, &#39;pribadi&#39;, &#39;halal&#39;, &#39;durjana&#39;, &#39;dailih&#39;, &#39;apa&#39;, &#39;nama&#39;, &#39;dekat&#39;, &#39;nama&#39;, &#39;iman&#39;, &#39;agama&#39;, &#39;dll&#39;, &#39;nyata&#39;, &#39;tipu&#39;, &#39;muslihat&#39;, &#39;keummatan&#39;, &#39;nyata&#39;, &#39;obyek&#39;, &#39;politik&#39;, &#39;susup&#39;, &#39;kutu&#39;, &#39;kutu&#39;, &#39;busuk&#39;, &#39;tanam&#39;, &#39;faham&#39;, &#39;biadab&#39;, &#39;balut&#39;, &#39;dalil&#39;, &#39;nama&#39;, &#39;tuhan&#39;, &#39;kejumawaan&#39;, &#39;fakta&#39;, &#39;egois&#39;, &#39;kaum&#39;, &#39;jamin&#39;, &#39;surga&#39;, &#39;nyata&#39;, &#39;sakit&#39;, &#39;delusi&#39;, &#39;mustahil&#39;, &#39;sembuh&#39;, &#39;dalih&#39;, &#39;seabreg&#39;, &#39;dalil&#39;, &#39;kaum&#39;, &#39;dosa&#39;, &#39;mudah&#39;, &#39;rendah&#39;, &#39;derajat&#39;, &#39;manusia&#39;]
+[&#39;iwan&#39;, &#39;pahlawan&#39;, &#39;noor&#39;, &#39;mbak&#39;, &#39;ketapang&#39;, &#39;sampit&#39;, &#39;hadir&#39;, &#39;n&#39;, &#39;dukung&#39;, &#39;anies&#39;, &#39;baswedan&#39;, &#39;presiden&#39;, &#39;ri&#39;, &#39;amin&#39;, &#39;ya&#39;, &#39;robbal&#39;]
+[&#39;p&#39;, &#39;nyungsep&#39;, &#39;kursi&#39;, &#39;dpr&#39;, &#39;ri&#39;, &#39;zonk&#39;, &#39;akar&#39;, &#39;rumput&#39;, &#39;pilihanis&#39;]
 [&#39;amin&#39;, &#39;ya&#39;, &#39;robbal&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;muncul&#39;, &#39;ridwan&#39;, &#39;kamil&#39;, &#39;erick&#39;, &#39;tohir&#39;, &#39;biar&#39;, &#39;partai&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;gerindra&#39;, &#39;pkb&#39;, &#39;gas&#39;, &#39;pool&#39;, &#39;capres&#39;, &#39;n&#39;, &#39;cawapres&#39;, &#39;gabung&#39;, &#39;parta&#39;, &#39;murni&#39;, &#39;dukung&#39;, &#39;i&#39;]
+[&#39;muncul&#39;, &#39;ridwan&#39;, &#39;kamil&#39;, &#39;erick&#39;, &#39;tohir&#39;, &#39;biar&#39;, &#39;partai&#39;]
+[&#39;gerindra&#39;, &#39;pkb&#39;, &#39;gas&#39;, &#39;pool&#39;, &#39;capres&#39;, &#39;n&#39;, &#39;cawapres&#39;, &#39;gabung&#39;, &#39;parta&#39;, &#39;murni&#39;, &#39;dukung&#39;, &#39;i&#39;]
 </pre></div>
 </div>
 </div>
@@ -1987,7 +2077,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-f1e67103-a352-4441-a981-f9a63eedc546">
+  <div id="df-b8724d84-7f0d-471f-9989-87302ec721e1">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -2094,7 +2184,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-f1e67103-a352-4441-a981-f9a63eedc546')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b8724d84-7f0d-471f-9989-87302ec721e1')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -2145,12 +2235,12 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 
       <script>
         const buttonEl =
-          document.querySelector('#df-f1e67103-a352-4441-a981-f9a63eedc546 button.colab-df-convert');
+          document.querySelector('#df-b8724d84-7f0d-471f-9989-87302ec721e1 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-f1e67103-a352-4441-a981-f9a63eedc546');
+          const element = document.querySelector('#df-b8724d84-7f0d-471f-9989-87302ec721e1');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -2170,126 +2260,6 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
     </div>
   </div>
   </div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pwd</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/content/drive/MyDrive/prosaindata/tugas&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>drive
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘drive’: File exists
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> /content/drive/MyDrive
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> prosaindata
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> tugas
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata/tugas
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pwd</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/content/drive/MyDrive/prosaindata/tugas&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>prosaindata
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘prosaindata’: File exists
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> prosaindata
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata/tugas/prosaindata
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>tugas
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘tugas’: File exists
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> tugas
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/prosaindata/tugas/prosaindata/tugas
-</pre></div>
-</div>
-</div>
 </div>
 <p>TF IDF</p>
 <div class="cell docutils container">
@@ -2368,7 +2338,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-b08ad586-410c-4231-95b7-31c09be1777e">
+  <div id="df-3ddac0f1-cc4e-4ae3-9c2a-a84a183adc2b">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -2896,7 +2866,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </table>
 <p>20 rows × 218 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-b08ad586-410c-4231-95b7-31c09be1777e')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-3ddac0f1-cc4e-4ae3-9c2a-a84a183adc2b')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -2947,12 +2917,12 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 
       <script>
         const buttonEl =
-          document.querySelector('#df-b08ad586-410c-4231-95b7-31c09be1777e button.colab-df-convert');
+          document.querySelector('#df-3ddac0f1-cc4e-4ae3-9c2a-a84a183adc2b button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-b08ad586-410c-4231-95b7-31c09be1777e');
+          const element = document.querySelector('#df-3ddac0f1-cc4e-4ae3-9c2a-a84a183adc2b');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -3027,7 +2997,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-ba8710b8-930a-4c3b-a54a-d4e837f7f6db">
+  <div id="df-9aebcc34-3792-4fb6-8258-c327a14012d0">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -3176,7 +3146,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-ba8710b8-930a-4c3b-a54a-d4e837f7f6db')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-9aebcc34-3792-4fb6-8258-c327a14012d0')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -3227,12 +3197,12 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 
       <script>
         const buttonEl =
-          document.querySelector('#df-ba8710b8-930a-4c3b-a54a-d4e837f7f6db button.colab-df-convert');
+          document.querySelector('#df-9aebcc34-3792-4fb6-8258-c327a14012d0 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-ba8710b8-930a-4c3b-a54a-d4e837f7f6db');
+          const element = document.querySelector('#df-9aebcc34-3792-4fb6-8258-c327a14012d0');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -3446,7 +3416,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-faa85c89-7ac9-4148-b454-73ea5e779a35">
+  <div id="df-1553702f-7ff4-403d-b21b-1994fc7ea541">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -3566,7 +3536,7 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 </table>
 <p>3 rows × 218 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-faa85c89-7ac9-4148-b454-73ea5e779a35')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-1553702f-7ff4-403d-b21b-1994fc7ea541')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -3617,12 +3587,12 @@ Requirement already satisfied: indoNLP in /usr/local/lib/python3.10/dist-package
 
       <script>
         const buttonEl =
-          document.querySelector('#df-faa85c89-7ac9-4148-b454-73ea5e779a35 button.colab-df-convert');
+          document.querySelector('#df-1553702f-7ff4-403d-b21b-1994fc7ea541 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-faa85c89-7ac9-4148-b454-73ea5e779a35');
+          const element = document.querySelector('#df-1553702f-7ff4-403d-b21b-1994fc7ea541');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
